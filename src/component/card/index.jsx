@@ -10,7 +10,9 @@ export default class Card extends React.Component {
   static propTypes = {
     cols: React.PropTypes.array.isRequired,
     rows: React.PropTypes.array.isRequired,
-    data: React.PropTypes.array.isRequired
+    data: React.PropTypes.array.isRequired,
+    onMouseOver: React.PropTypes.func,
+    onClick: React.PropTypes.func
   }
 
   render() {

@@ -74,13 +74,19 @@ function createData() {
  */
 export default class App extends Component {
 
+  onPunchEvent(e, data) {
+    console.info(e, data);
+  }
+
   render() {
     return (
       <div className='container'>
         <Card
           data={createData()}
           cols={cols}
-          rows={rows} />
+          rows={rows}
+          onMouseOver={this.onPunchEvent}
+          onClick={this.onPunchEvent} />
       </div>
     );
   }
