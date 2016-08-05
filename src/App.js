@@ -59,6 +59,19 @@ function createData() {
   return data;
 }
 
+
+/**
+ * Card component can accept a custom Punch component.
+ * Just pass it as child.
+ * eg.
+ *   <Card
+ *      data={createData()}
+ *      cols={cols}
+ *      rows={rows}>
+ *    <MyPunchComponent />
+ *  </Card>
+ * If you don't set a child, Card will use default Punch.
+ */
 export default class App extends Component {
 
   render() {
@@ -67,7 +80,7 @@ export default class App extends Component {
         <Card
           data={createData()}
           cols={cols}
-          rows={rows}/>
+          rows={rows} />
       </div>
     );
   }
