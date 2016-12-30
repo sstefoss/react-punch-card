@@ -1,95 +1,13 @@
-$xAxis-min-height: 40px;
+$font-color: #b1b2b4;
+$punch-color: #6ec3c7;
 
 .punch-card {
-  display: flex;
-  flex-direction: row;
-  width: 980px;
-  height: 520px;
-
-  &--space {
-    display: flex;
-    flex-direction: column;
-    flex: 1 0 auto;
+  &__xAxis-item,
+  &__yAxis-item {
+    fill: $font-color;
+    font-weight: bold;
   }
-
-  &--rows {
-    display: flex;
-    flex-direction: column;
-    flex: 1 0 auto;
-    justify-content: space-around;
-  }
-
-  &--row {
-    display: flex;
-    flex-direction: row;
-    flex: 1 0 auto;
-    border-bottom: 1px solid #f1f1f1;
-  }
-
-  &--cols {
-    display: flex;
-    flex: 1 0 auto;
-    align-items: center;
-    align-content: center;
-  }
-
-  &--col {
-    flex: 1 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-
-    &:nth-child(even):before {
-      height: 10px;
-    }
-    &:nth-child(odd):before {
-      height: 15px;
-    }
-
-    &:before {
-      content: '';
-      position: absolute;
-      width: 1px;
-      left: 50%;
-      bottom: -65%;
-      background: #f1f1f1;
-    }
-  }
-
-  &--yAxis {
-    padding: 0px;
-    height: calc(100% - $xAxis-min-height);
-    flex: 0 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-
-    &--item {
-      flex: 1 0 auto;
-      align-items: center;
-      justify-content: flex-start;
-      display: flex;
-      border-bottom: 1px solid #f1f1f1;
-      padding: 0 10% 0 0;
-    }
-  }
-
-  &--xAxis {
-    min-height: $xAxis-min-height;
-    display: flex;
-    flex-direction: row;
-    border: none;
-    flex: 0 0 auto;
-
-    &--item {
-      flex: 1 0 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: bold;
-    }
+  &__punch {
+    fill: $punch-color;
   }
 }

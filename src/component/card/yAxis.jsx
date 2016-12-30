@@ -3,17 +3,23 @@ import React from 'react';
 export default class YAxis extends React.Component {
 
   static propTypes = {
-    data: React.PropTypes.array.isRequired
+    data: React.PropTypes.array.isRequired,
+    height: React.PropTypes.number.isRequired
   }
 
   render() {
-    const {data} = this.props;
+    const {data, height} = this.props;
+    const heightOffset = 40;
+    const heightMult = height / data.length;
     return (
-      <div className='punch-card--yAxis'>{data.map((item, i) => {
+      <g className='punch-card__yAxis'>{data.map((row, i) => {
         return (
-          <div key={`yAxis--${i}`} className='punch-card--yAxis--item'>{data[i]}</div>
+          <g key={row} className='punch-card__yAxis-item'>
+            <text dy={(i * heightMult) + heightOffset}>{row}</text>
+          </g>
         );
-      })}</div>
+      })}
+      </g>
     );
   }
 }

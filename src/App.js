@@ -2,41 +2,12 @@ import React, { Component } from 'react';
 import {Card} from './component';
 import './style';
 
+const cols = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 const rows = [
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday'
-];
-
-const cols = [
-  '12a',
-  '1a',
-  '2a',
-  '3a',
-  '4a',
-  '5a',
-  '6a',
-  '7a',
-  '8a',
-  '9a',
-  '10a',
-  '11a',
-  '12p',
-  '1p',
-  '2p',
-  '3p',
-  '4p',
-  '5p',
-  '6p',
-  '7p',
-  '8p',
-  '9p',
-  '10p',
-  '11p'
+  'Dec 5',
+  'Dec 12',
+  'Dec 19',
+  'Dec 26',
 ];
 
 /**
@@ -44,7 +15,7 @@ const cols = [
  */
 function getRandomArbitrary() {
   const max = 10;
-  const min = 0;
+  const min = 100;
   return Math.random() * (max - min) + min;
 }
 
@@ -74,19 +45,20 @@ function createData() {
  */
 export default class App extends Component {
 
-  onPunchEvent(e, data) {
-    console.info(e, data);
-  }
-
   render() {
     return (
-      <div className='container'>
-        <Card
-          data={createData()}
-          cols={cols}
-          rows={rows}
-          onMouseOver={this.onPunchEvent}
-          onClick={this.onPunchEvent} />
+      <div>
+        <div className='container'>
+          <Card
+            width={420}
+            height={215}
+            data={createData()}
+            cols={cols}
+            rows={rows}
+            punchRadius={20}
+            onMouseOver={this.onPunchEvent}
+            onClick={this.onPunchEvent} />
+        </div>
       </div>
     );
   }

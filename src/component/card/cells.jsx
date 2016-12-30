@@ -1,5 +1,4 @@
 import React from 'react';
-import {Punch, Tooltip} from '../';
 
 export default class Cells extends React.Component {
 
@@ -7,40 +6,31 @@ export default class Cells extends React.Component {
     cols: React.PropTypes.array.isRequired,
     rows: React.PropTypes.array.isRequired,
     data: React.PropTypes.array.isRequired,
-    onMouseOver: React.PropTypes.func,
-    onClick: React.PropTypes.func
+    punchRadius: React.PropTypes.number,
   }
 
   render() {
-    const {rows, cols, data, children, onMouseOver, onClick} = this.props;
+    const {rows, cols, data, width, height, punchRadius} = this.props;
+    const widthOffset = 80;
+    const heightOffset = 35;
+    const radiusMult = punchRadius / 100;
+    const widthMult = (width - widthOffset) / cols.length;
+    const heightMult = height / data.length;
     return (
-      <div className='punch-card--rows'>{rows.map((row, i) => {
+      <g className='punch-card__data'>{rows.map((row, i) => {
         return (
-          <div key={`${i}`} className='punch-card--row'>
-            <div className='punch-card--cols'>{cols.map((col, j) => {
-              let childrenWithProps = (children) ? React.Children.map(children, child => React.cloneElement(child, {
-                  data: data[i][j],
-                  position: {y: i, x: j}
-                })
-              ) : (
-                <Punch
-                  onClick={onClick}
-                  onMouseOver={onMouseOver}
-                  data={data[i][j]}
-                  position={{y: i, x: j}}>
-                  <Tooltip />
-                </Punch>
-              );
-
-              return (
-                <div key={`${i}${j}`} className='punch-card--col'>
-                  {childrenWithProps}
-                </div>
-              );
-            })}</div>
-          </div>
+          <g key={`${i}`} className='punch-card__data-row'>{cols.map((col, j) => {
+            return (
+              <circle
+                className='punch-card__punch'
+                key={`${i}.${j}`}
+                cy={(i * heightMult) + heightOffset} cx={(j * widthMult) + widthOffset}
+                r={data[i][j] * radiusMult} />
+            );
+          })}
+          </g>
         );
-      })}</div>
+      })}</g>
     );
   }
 }
