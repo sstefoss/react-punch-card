@@ -24,7 +24,7 @@ export default class XAxis extends React.Component {
             dx={(i * widthMult) + yAxisWidth + punchRadius}>
             {item}
           </text>
-        )
+        );
       })}</g>
     );
   }

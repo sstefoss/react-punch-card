@@ -8,12 +8,16 @@ export default class Cells extends React.Component {
     rows: React.PropTypes.array.isRequired,
     data: React.PropTypes.array.isRequired,
     punchRadius: React.PropTypes.number,
+    width: React.PropTypes.number.isRequired,
+    rowHeight: React.PropTypes.number.isRequired,
+    xAxisHeight: React.PropTypes.number.isRequired,
+    cyMult: React.PropTypes.func.isRequired,
     yAxisWidth: React.PropTypes.number,
     yAxisPadding: React.PropTypes.number,
   }
 
   render() {
-    const {rows, cols, data, width, height, punchRadius, rowHeight, xAxisHeight, cyMult, yAxisWidth, yAxisPadding} = this.props;
+    const {rows, cols, data, width, punchRadius, rowHeight, xAxisHeight, cyMult, yAxisWidth, yAxisPadding} = this.props;
     const radiusMult = punchRadius / 100;
     const widthMult = (width + yAxisPadding - yAxisWidth) / cols.length;
     return (
