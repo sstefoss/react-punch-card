@@ -8,15 +8,13 @@ export default class YAxis extends React.Component {
   }
 
   render() {
-    const {data, height} = this.props;
-    const heightOffset = 40;
+    const {data, height, rowHeight, xAxisHeight, punchRadius, cyMult} = this.props;
     const heightMult = height / data.length;
     return (
       <g className='punch-card__yAxis'>{data.map((row, i) => {
+        const cy = cyMult(i, rowHeight, xAxisHeight, punchRadius);
         return (
-          <g key={row} className='punch-card__yAxis-item'>
-            <text dy={(i * heightMult) + heightOffset}>{row}</text>
-          </g>
+          <text key={row} className='punch-card__yAxis-item' dy={cy + 5}>{row}</text>
         );
       })}
       </g>

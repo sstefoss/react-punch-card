@@ -50,14 +50,11 @@ export default class App extends Component {
       <div>
         <div className='container'>
           <Card
-            width={420}
-            height={215}
-            data={createData()}
             cols={cols}
             rows={rows}
-            punchRadius={20}
-            onMouseOver={this.onPunchEvent}
-            onClick={this.onPunchEvent} />
+            data={createData()}
+            punchRadius={16}
+          />
         </div>
       </div>
     );
