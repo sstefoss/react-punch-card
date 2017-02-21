@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card} from './component';
+import PunchCard from './component';
 import './style';
 
 const cols = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
@@ -30,26 +30,13 @@ function createData() {
   return data;
 }
 
-
-/**
- * Card component can accept a custom Punch component.
- * Just pass it as child.
- * eg.
- *   <Card
- *      data={createData()}
- *      cols={cols}
- *      rows={rows}>
- *    <MyPunchComponent />
- *  </Card>
- * If you don't set a child, Card will use default Punch.
- */
 export default class App extends Component {
 
   render() {
     return (
       <div>
         <div className='container'>
-          <Card
+          <PunchCard
             cols={cols}
             rows={rows}
             data={createData()}

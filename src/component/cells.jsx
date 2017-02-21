@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classNames';
+import Punch from './punch';
 
 export default class Cells extends React.Component {
 
@@ -14,29 +15,36 @@ export default class Cells extends React.Component {
     cyMult: React.PropTypes.func.isRequired,
     yAxisWidth: React.PropTypes.number,
     yAxisPadding: React.PropTypes.number,
+    getValue: React.PropTypes.func,
+    component: React.PropTypes.node,
   }
 
   render() {
-    const {rows, cols, data, width, punchRadius, rowHeight, xAxisHeight, cyMult, yAxisWidth, yAxisPadding} = this.props;
+    const {rows, cols, data, width, punchRadius, rowHeight, xAxisHeight, cyMult, yAxisWidth, yAxisPadding, getValue, component} = this.props;
+    const child = component ? component : <Punch />;
     const radiusMult = punchRadius / 100;
     const widthMult = (width + yAxisPadding - yAxisWidth) / cols.length;
+
     return (
       <g className='punch-card__data'>{rows.map((row, i) => {
         return (
           <g key={`${i}`} className='punch-card__data-row'>{cols.map((col, j) => {
             const key = `${i}.${j}`;
+            const value = getValue(data[i][j]);
+            const r = value ? value * radiusMult : 0;
             const className = classNames('punch-card__punch');
-            const r = data[i][j] * radiusMult;
             const cy = cyMult(i, rowHeight, xAxisHeight, punchRadius);
             const cx = (j * widthMult) + yAxisWidth + punchRadius;
-            return (
-              <circle
-                key={key}
-                className={className}
-                cy={cy}
-                cx={cx}
-                r={r} />
-            );
+            const punchProps = Object.assign({}, {
+              key,
+              className,
+              cy,
+              cx,
+              r,
+              data: data[i][j]
+            });
+
+            return React.cloneElement(child, { ...punchProps});
           })}
           </g>
         );

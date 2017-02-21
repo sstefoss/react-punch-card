@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classNames';
 
 export default class XAxis extends React.Component {
 
@@ -15,14 +16,17 @@ export default class XAxis extends React.Component {
     const widthMult = (width + yAxisPadding - yAxisWidth) / data.length;
     return (
       <g className='punch-card__xAxis'>{data.map((item, i) => {
+        const cn = classNames('punch-card__xAxis-item', {
+          'punch-card__xAxis-item--is-inactive': !item.isActive
+        });
         return (
           <text
-            className='punch-card__xAxis-item'
+            className={cn}
             textAnchor='middle'
             key={i}
-            dy={10}
+            dy={12}
             dx={(i * widthMult) + yAxisWidth + punchRadius}>
-            {item}
+            {item.value}
           </text>
         );
       })}</g>
