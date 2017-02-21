@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import classNames from 'classNames';
 import Punch from './punch';
 import XAxis from './xAxis';
 import YAxis from './yAxis';
 import Cells from './cells';
 import './style';
 
+const COMPONENT = 'punch-card';
+
 const cyMult = (i, rowHeight, xAxisHeight, punchRadius) => (i * rowHeight) + xAxisHeight + punchRadius;
 
 export default class Card extends React.Component {
 
   static propTypes = {
+    className: React.PropTypes.string,
     cols: React.PropTypes.array.isRequired,
     rows: React.PropTypes.array.isRequired,
     punchRadius: React.PropTypes.number,
@@ -35,6 +39,7 @@ export default class Card extends React.Component {
 
   render() {
     const {
+      className,
       rows,
       cols,
       data,
@@ -52,9 +57,11 @@ export default class Card extends React.Component {
     const height = xAxisHeight + (rows.length * rowHeight);
     const width = yAxisWidth + (cols.length * colWidth) - yAxisPadding;
 
+    const cn = classNames(COMPONENT, className);
+
     return (
       <svg
-        className='punch-card'
+        className={cn}
         width={width}
         height={height}>
         <XAxis
@@ -65,7 +72,6 @@ export default class Card extends React.Component {
           yAxisPadding={yAxisPadding}
         />
         <YAxis
-          ref={ref => this.yAxis = ref}
           height={height}
           data={rows}
           cyMult={cyMult}
