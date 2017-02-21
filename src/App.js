@@ -40,7 +40,6 @@ export default class App extends Component {
             cols={cols}
             rows={rows}
             data={createData()}
-            punchRadius={16}
           />
         </div>
       </div>
