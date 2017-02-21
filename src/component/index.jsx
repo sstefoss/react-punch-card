@@ -19,8 +19,6 @@ export default class Card extends React.Component {
     rows: React.PropTypes.array.isRequired,
     punchRadius: React.PropTypes.number,
     data: React.PropTypes.array.isRequired,
-    onMouseOver: React.PropTypes.func,
-    onClick: React.PropTypes.func,
     xAxisHeight: React.PropTypes.number,
     xAxisPadding: React.PropTypes.number,
     yAxisWidth: React.PropTypes.number,
