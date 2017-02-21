@@ -9,6 +9,8 @@ import './style';
 
 const COMPONENT = 'punch-card';
 
+const getValueFun = data => data;
+
 const cyMult = (i, rowHeight, xAxisHeight, punchRadius) => (i * rowHeight) + xAxisHeight + punchRadius;
 
 export default class Card extends React.Component {
@@ -32,7 +34,9 @@ export default class Card extends React.Component {
     yAxisWidth: 85,
     yAxisPadding: 20,
     punchRadius: 16,
-    getValue: data => data,
+    getValue: getValueFun,
+    getXAxisValue: getValueFun,
+    getYAxisValue: getValueFun,
   }
 
   render() {
@@ -46,6 +50,8 @@ export default class Card extends React.Component {
       yAxisWidth,
       xAxisPadding,
       yAxisPadding,
+      getYAxisValue,
+      getXAxisValue,
       getValue
     } = this.props;
     const rowHeight = (punchRadius * 2) + xAxisPadding;
@@ -68,6 +74,7 @@ export default class Card extends React.Component {
           yAxisWidth={yAxisWidth}
           punchRadius={punchRadius}
           yAxisPadding={yAxisPadding}
+          getValue={getXAxisValue}
         />
         <YAxis
           height={height}
@@ -76,6 +83,7 @@ export default class Card extends React.Component {
           rowHeight={rowHeight}
           xAxisHeight={xAxisHeight}
           punchRadius={punchRadius}
+          getValue={getYAxisValue}
         />
         <Cells
           width={width}
